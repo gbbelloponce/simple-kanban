@@ -2,12 +2,13 @@
 declare global {
   // SK => Simple Kanban
   namespace SK {
-    type TaskState = {
+    type TaskStore = {
       tasks: Task[]
       addTask: (task: Task) => void
     }
     type Task = {
       id: string
+      column: Columns
       description: string
     }
   }
