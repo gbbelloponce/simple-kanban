@@ -1,5 +1,11 @@
 import { FC } from 'react'
 
+import { Kanban } from '../components/Kanban'
+
 export const Home: FC = () => {
-  return <h1>hola!</h1>
+  return (
+    <main className='h-full flex items-start justify-center mt-24'>
+      <Kanban />
+    </main>
+  )
 }
