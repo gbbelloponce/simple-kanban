@@ -2,6 +2,7 @@ import { FC } from 'react'
 
 import { Columns } from '../enums'
 import { useTaskStore } from '../store/task'
+import { useTaskFormStore } from '../store/taskForm'
 import { getStyleFromColumnType, getTitleFromColumnType } from '../utils/kanban'
 
 type IKanbanColumn = {
@@ -14,6 +15,8 @@ export const KanbanColumn: FC<IKanbanColumn> = ({ type }) => {
     store.tasks.filter((task) => task.column === type)
   )
 
+  const setIsOpen = useTaskFormStore((store) => store.setIsOpen)
+
   return (
     <section className='rounded w-52 px-2'>
       <div className='flex flex-row justify-between items-center mb-1'>
@@ -25,9 +28,12 @@ export const KanbanColumn: FC<IKanbanColumn> = ({ type }) => {
           >
             {getTitleFromColumnType(type)}
           </h3>
-          <span className='text-gray-400 text-sm'>3</span>
+          <span className='text-gray-400 text-sm'>{tasks.length}</span>
         </div>
-        <button className='text-xl rounded-xl text-gray-400 px-1 hover:bg-gray-600'>
+        <button
+          onClick={() => setIsOpen(true)}
+          className='text-xl rounded-xl text-gray-400 px-2 hover:bg-gray-100 hover:-translate-y-1 transition-transform'
+        >
           +
         </button>
       </div>
@@ -35,7 +41,8 @@ export const KanbanColumn: FC<IKanbanColumn> = ({ type }) => {
         {tasks.map((task) => {
           return (
             <div
-              className='p-2 rounded shadow-sm border-gray-100 border-2 cursor-move'
+              className='p-2 rounded shadow-sm border-gray-100 border-2 cursor-move hover:-translate-y-1 transition-transform'
+              key={task.id}
               data-id={task.id}
             >
               <p className='text-sm text-gray-700 text-center'>
