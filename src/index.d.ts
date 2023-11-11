@@ -1,3 +1,5 @@
+import { Columns } from './enums'
+
 // Global access types
 declare global {
   // SK => Simple Kanban
@@ -8,7 +10,8 @@ declare global {
     }
     type TaskFormStore = {
       isOpen: boolean
-      setIsOpen: (value: boolean) => void
+      column?: Columns
+      setIsOpen: (value: boolean, column?: Columns) => void
     }
     type Task = {
       id: string

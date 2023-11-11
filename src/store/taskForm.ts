@@ -2,5 +2,6 @@ import { create } from 'zustand'
 
 export const useTaskFormStore = create<SK.TaskFormStore>((set) => ({
   isOpen: false,
-  setIsOpen: (value) => set(() => ({ isOpen: value })),
+  column: undefined,
+  setIsOpen: (value, column) => set(() => ({ isOpen: value, column })),
 }))

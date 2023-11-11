@@ -31,7 +31,7 @@ export const KanbanColumn: FC<IKanbanColumn> = ({ type }) => {
           <span className='text-gray-400 text-sm'>{tasks.length}</span>
         </div>
         <button
-          onClick={() => setIsOpen(true)}
+          onClick={() => setIsOpen(true, type)}
           className='text-xl rounded-xl text-gray-400 px-2 hover:bg-gray-100 hover:-translate-y-1 transition-transform'
         >
           +
