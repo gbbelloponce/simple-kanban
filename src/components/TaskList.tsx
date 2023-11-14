@@ -14,7 +14,6 @@ export const TaskList: FC<{ column: Columns; tasks: SK.Task[] }> = ({
 
   const onDragOver = (e: DragEvent) => {
     e.preventDefault()
-    if (isDragOver) return
     setIsDragOver(true)
   }
 
@@ -24,6 +23,7 @@ export const TaskList: FC<{ column: Columns; tasks: SK.Task[] }> = ({
 
   const onDrop = (e: DragEvent) => {
     e.preventDefault()
+    setIsDragOver(false)
     // Does not move if the column its the same
     if (e.dataTransfer.getData('taskColumn') === column.toString()) return
 
@@ -40,6 +40,9 @@ export const TaskList: FC<{ column: Columns; tasks: SK.Task[] }> = ({
       {tasks.map((task) => (
         <Task key={task.id} task={task} />
       ))}
+      {isDragOver && (
+        <div className='h-10 p-2 rounded shadow-sm border-dashed border-green-300 border-2'></div>
+      )}
     </div>
   )
 }
