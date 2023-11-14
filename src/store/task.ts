@@ -8,7 +8,7 @@ export const useTaskStore = create<SK.TaskStore>((set) => ({
       column: 1,
     },
     {
-      description: 'A asdtask',
+      description: 'A special Task',
       id: '5',
       column: 1,
     },
