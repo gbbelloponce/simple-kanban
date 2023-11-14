@@ -24,4 +24,16 @@ export const useTaskStore = create<SK.TaskStore>((set) => ({
     },
   ],
   addTask: (task) => set((state) => ({ tasks: [...state.tasks, task] })),
+  moveTask: (taskId, toColumn) =>
+    set((state) => ({
+      tasks: [
+        // All tasks excepto the one to move
+        ...state.tasks.filter((task) => taskId !== task.id),
+        {
+          // Spread all props from task found by id
+          ...state.tasks.find((task) => task.id === taskId)!,
+          column: toColumn,
+        },
+      ],
+    })),
 }))

@@ -7,6 +7,7 @@ declare global {
     type TaskStore = {
       tasks: Task[]
       addTask: (task: Task) => void
+      moveTask: (taskId: string, toColumn: Columns) => void
     }
     type TaskFormStore = {
       isOpen: boolean

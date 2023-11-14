@@ -1,6 +1,7 @@
 import { FC } from 'react'
 
 import { Columns } from '../enums'
+import { TaskList } from './TaskList'
 import { useTaskStore } from '../store/task'
 import { useTaskFormStore } from '../store/taskForm'
 import { getStyleFromColumnType, getTitleFromColumnType } from '../utils/kanban'
@@ -18,7 +19,7 @@ export const KanbanColumn: FC<IKanbanColumn> = ({ type }) => {
   const setIsOpen = useTaskFormStore((store) => store.setIsOpen)
 
   return (
-    <section className='rounded w-52 px-2'>
+    <section className='flex flex-col items-stretch justify-stretch rounded w-52 px-2'>
       <div className='flex flex-row justify-between items-center mb-1'>
         <div className='flex items-center'>
           <h3
@@ -37,21 +38,7 @@ export const KanbanColumn: FC<IKanbanColumn> = ({ type }) => {
           +
         </button>
       </div>
-      <div className='flex flex-col gap-3'>
-        {tasks.map((task) => {
-          return (
-            <div
-              className='p-2 rounded shadow-sm border-gray-100 border-2 cursor-move hover:-translate-y-1 transition-transform'
-              key={task.id}
-              data-id={task.id}
-            >
-              <p className='text-sm text-gray-700 text-center'>
-                {task.description}
-              </p>
-            </div>
-          )
-        })}
-      </div>
+      <TaskList column={type} tasks={tasks} />
     </section>
   )
 }
